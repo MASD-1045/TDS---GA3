@@ -2,27 +2,22 @@ name: Daily Commit Workflow
 
 on:
   schedule:
-    # Run every day at 02:30 UTC (adjust hours/minutes as needed)
+    # Runs every day at 02:30 UTC (change time as needed)
     - cron: "30 2 * * *"
 
 jobs:
   daily-commit:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Step with email 23f1000179@ds.study.iitm.ac.in
+      - name: Update file and commit - 23f1000179@ds.study.iitm.ac.in
         run: |
-          echo "Adding a daily commit"
-
-      - name: Make daily commit
-        run: |
-          DATE=$(date +"%Y-%m-%d %H:%M:%S")
-          echo "Daily commit at $DATE" >> daily.txt
-          git config user.name "23f1000179"
-          git config user.email "23f1000179@ds.study.iitm.ac.in"
-          git add daily.txt
-          git commit -m "Daily commit $DATE"
+          # Create or update a file with the current timestamp
+          echo "Last updated at $(date -u)" >> daily_update.txt
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add daily_update.txt
+          git commit -m "Daily update commit $(date -u)" || echo "No changes to commit"
           git push
