@@ -21,8 +21,8 @@ jobs:
         run: |
           DATE=$(date +"%Y-%m-%d %H:%M:%S")
           echo "Daily commit at $DATE" >> daily.txt
-          git config user.name "github-actions[bot]"
-          git config user.email "actions@github.com"
+          git config user.name "23f1000179"
+          git config user.email "23f1000179@ds.study.iitm.ac.in"
           git add daily.txt
           git commit -m "Daily commit $DATE"
           git push
