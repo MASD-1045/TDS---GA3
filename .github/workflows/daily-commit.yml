@@ -2,7 +2,7 @@ name: Daily Commit Workflow
 
 on:
   schedule:
-    # Runs every day at 02:30 UTC (change time as needed)
+    # Runs every day at 02:30 UTC
     - cron: "30 2 * * *"
 
 jobs:
@@ -12,9 +12,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Update file and commit - 23f1000179@ds.study.iitm.ac.in
+      - name: 23f1000179@ds.study.iitm.ac.in - Update file and commit
         run: |
-          # Create or update a file with the current timestamp
+          # Ensure there is always a new change
           echo "Last updated at $(date -u)" >> daily_update.txt
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
