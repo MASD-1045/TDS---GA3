@@ -1,12 +1,12 @@
-name: Daily Commit Workflow
+name: Minute Test Commit Workflow
 
 on:
   schedule:
-    # Run every day at 02:30 UTC (adjust hours/minutes as needed)
-    - cron: "30 2 * * *"
+    # Runs every minute (for testing)
+    - cron: "* * * * *"
 
 jobs:
-  daily-commit:
+  commit-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,14 +15,16 @@ jobs:
 
       - name: Step with email 23f1000179@ds.study.iitm.ac.in
         run: |
-          echo "Adding a daily commit"
+          echo "Adding a test commit every minute"
 
-      - name: Make daily commit
+      - name: Make test commit
         run: |
           DATE=$(date +"%Y-%m-%d %H:%M:%S")
-          echo "Daily commit at $DATE" >> daily.txt
+          # Create the file if it doesn't exist
+          touch minute_test.txt
+          echo "Commit at $DATE" >> minute_test.txt
           git config user.name "github-actions[bot]"
           git config user.email "actions@github.com"
-          git add daily.txt
-          git commit -m "Daily commit $DATE"
+          git add minute_test.txt
+          git commit -m "Test commit $DATE" || echo "No changes to commit"
           git push
