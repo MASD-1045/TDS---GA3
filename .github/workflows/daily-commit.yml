@@ -4,7 +4,6 @@ on:
   schedule:
     # Run every day at 02:30 UTC (adjust hours/minutes as needed)
     - cron: "30 2 * * *"
-  workflow_dispatch: # Optional: allows manual triggering
 
 jobs:
   daily-commit:
