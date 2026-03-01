@@ -1,0 +1,23 @@
+name: Daily Commit Workflow
+
+on:
+  schedule:
+    # Runs every day at 02:30 UTC
+    - cron: "30 2 * * *"
+
+jobs:
+  daily-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: 23f1000179@ds.study.iitm.ac.in - Update file and commit
+        run: |
+          # Ensure there is always a new change
+          echo "Last updated at $(date -u)" >> daily_update.txt
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add daily_update.txt
+          git commit -m "Daily update commit $(date -u)" || echo "No changes to commit"
+          git push
